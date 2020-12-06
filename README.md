@@ -1,4 +1,4 @@
-# wasm-run-template
+# {{project-name}}
 
 ## Development Server
 
