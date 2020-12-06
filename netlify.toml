@@ -1,0 +1,6 @@
+# NOTE: Netlify support for Rust is going to be available soon:tm:
+#       https://github.com/netlify/build-image/pull/477
+
+[build]
+publish = "build"
+command = "rustup toolchain install stable; cargo run -- build"
