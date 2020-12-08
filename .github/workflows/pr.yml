@@ -18,7 +18,11 @@ jobs:
         id: cache-target
         uses: actions/cache@v2
         with:
-          path: target
+          path: |
+            ~/.rustup
+            ~/.cargo/registry
+            ~/.cargo/bin
+            target
           key: {{ "${{ github.event.issue.number" }} }}-{{ "${{ runner.os" }} }}-pr
           restore-keys: main
 
