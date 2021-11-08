@@ -7,10 +7,18 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+
+# Package for Rust and WASM
 wasm-run = "0.9"
+
+# Used to make the CLI that will package our web app
 structopt = "0.3"
 
+# Helper to download blueprint's CSS
+yewprint-css = { git = "https://github.com/yewprint/yewprint.git", branch = "main" }
+
 [workspace]
+# Our actual web app
 members = ["app"]
 
 [profile.release]

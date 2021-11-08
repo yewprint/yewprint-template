@@ -1,4 +1,4 @@
-#![cfg(target_arch = "wasm32")]
+mod app;
 
 use wasm_bindgen::prelude::*;
 
@@ -20,6 +20,7 @@ pub fn run_app() -> Result<(), JsValue> {
     console_error_panic_hook::set_once();
 
     log("Hello World!");
+    yew::start_app::<app::App>();
 
     Ok(())
 }
