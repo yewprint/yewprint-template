@@ -3,7 +3,7 @@ use std::process::Command;
 use structopt::StructOpt;
 use wasm_run::prelude::*;
 
-#[wasm_run::main(pre_build = pre_build)]
+#[wasm_run::main("app", pre_build = pre_build)]
 #[derive(StructOpt, Debug)]
 enum Cli {}
 
