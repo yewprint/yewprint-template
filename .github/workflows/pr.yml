@@ -14,23 +14,13 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v2
 
-      - name: Cache target
-        id: cache-target
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.rustup
-            ~/.cargo/registry
-            ~/.cargo/bin
-            target
-          key: {{ "${{ github.event.issue.number" }} }}-{{ "${{ runner.os" }} }}-pr
-          restore-keys: main
+      - uses: Swatinem/rust-cache@v1
 
       - name: cargo test
         uses: actions-rs/cargo@v1
         with:
           command: test
-          args: --workspace
+          args: --workspace --all-features
 
       - name: rustfmt
         uses: actions-rs/cargo@v1
@@ -42,4 +32,4 @@ jobs:
         uses: actions-rs/clippy-check@v1
         with:
           token: {{ "${{ secrets.GITHUB_TOKEN" }} }}
-          args: -- -D warnings
+          args: --all --all-features --tests -- -D warnings
