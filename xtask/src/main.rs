@@ -1,3 +1,4 @@
+use std::path::PathBuf;
 use std::process;
 use xtask_wasm::{anyhow::Result, clap};
 
@@ -13,7 +14,9 @@ fn main() -> Result<()> {
 
     match cli {
         Cli::Dist(args) => {
-            args.static_dir_path("static").run("run")?;
+            let dist = args.static_dir_path("static").run("run")?;
+
+            download_css(dist.dist_dir)?;
         }
         Cli::Watch(args) => {
             let mut command = process::Command::new("cargo");
@@ -25,6 +28,16 @@ fn main() -> Result<()> {
             args.arg("dist")
                 .start(xtask_wasm::default_dist_dir(false))?;
         }
+    }
+
+    Ok(())
+}
+
+fn download_css(path: PathBuf) -> Result<()> {
+    let css_path = path.join("blueprint.css");
+
+    if !css_path.exists() {
+        yewprint_css::download_css(&css_path)?;
     }
 
     Ok(())
