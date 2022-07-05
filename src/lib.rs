@@ -12,7 +12,7 @@ extern "C" {
 pub fn run_app() -> Result<(), JsValue> {
     log("Hello World!");
 
-    yew::start_app::<app::App>();
+    yew::start_app::<app::Root>();
 
     Ok(())
 }
