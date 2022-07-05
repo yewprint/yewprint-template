@@ -6,7 +6,7 @@
 cargo xtask start
 ```
 
-You can now go to http://localhost:3000
+You can now go to http://localhost:8000
 
 ## Production Build
 
