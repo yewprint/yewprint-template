@@ -14,7 +14,7 @@ fn main() -> Result<()> {
 
     match cli {
         Cli::Dist(args) => {
-            let dist = args.static_dir_path("static").run("run")?;
+            let dist = args.static_dir_path("static").run("{{project-name}}")?;
 
             download_css(dist.dist_dir)?;
         }
