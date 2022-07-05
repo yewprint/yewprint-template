@@ -1,5 +1,4 @@
-use std::path::PathBuf;
-use std::process;
+use std::{path::Path, process};
 use xtask_wasm::{anyhow::Result, clap, DistResult};
 
 #[derive(clap::Parser)]
@@ -17,7 +16,7 @@ fn main() -> Result<()> {
             let DistResult { dist_dir, .. } =
                 args.static_dir_path("static").run("{{project-name}}")?;
 
-            download_css(dist_dir)?;
+            download_css(&dist_dir)?;
         }
         Cli::Watch(args) => {
             let mut command = process::Command::new("cargo");
@@ -34,7 +33,7 @@ fn main() -> Result<()> {
     Ok(())
 }
 
-fn download_css(path: PathBuf) -> Result<()> {
+fn download_css(path: &Path) -> Result<()> {
     let css_path = path.join("blueprint.css");
 
     if !css_path.exists() {

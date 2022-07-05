@@ -15,5 +15,9 @@ web-sys = { version = "0.3", features = ["Window", "MediaQueryList"] }
 yew = "0.19"
 yewprint = { git = "https://github.com/yewprint/yewprint.git", branch = "main" }
 
+[profile.release]
+# Tell `rustc` to optimize for small code size.
+opt-level = "s"
+
 [workspace]
 members = ["xtask"]
