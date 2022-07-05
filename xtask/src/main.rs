@@ -1,6 +1,6 @@
 use std::path::PathBuf;
 use std::process;
-use xtask_wasm::{anyhow::Result, clap};
+use xtask_wasm::{anyhow::Result, clap, DistResult};
 
 #[derive(clap::Parser)]
 enum Cli {
@@ -14,9 +14,10 @@ fn main() -> Result<()> {
 
     match cli {
         Cli::Dist(args) => {
-            let dist = args.static_dir_path("static").run("{{project-name}}")?;
+            let DistResult { dist_dir, .. } =
+                args.static_dir_path("static").run("{{project-name}}")?;
 
-            download_css(dist.dist_dir)?;
+            download_css(dist_dir)?;
         }
         Cli::Watch(args) => {
             let mut command = process::Command::new("cargo");

@@ -1,13 +1,6 @@
 use yew::prelude::*;
 use yewprint::{Button, IconName};
 
-#[function_component(Root)]
-pub fn root() -> Html {
-    html! {
-        <App></App>
-    }
-}
-
 pub struct App {
     dark_theme: bool,
 }
