@@ -1,5 +1,5 @@
 use yew::prelude::*;
-use yewprint::{Button, IconName};
+use yewprint::{Button, Icon};
 
 pub struct App {
     dark_theme: bool,
@@ -36,7 +36,7 @@ impl Component for App {
             <div class={classes!(self.dark_theme.then(|| "bp3-dark"))}>
                 <Button
                     onclick={ctx.link().callback(|_| Msg::ToggleLight)}
-                    icon={IconName::Flash}
+                    icon={Icon::Flash}
                 >
                     {"Toggle light"}
                 </Button>
