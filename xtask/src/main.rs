@@ -11,6 +11,10 @@ enum Cli {
 fn main() -> Result<()> {
     let cli: Cli = clap::Parser::parse();
 
+    env_logger::builder()
+        .filter(Some("xtask"), log::LevelFilter::Info)
+        .init();
+
     match cli {
         Cli::Dist(args) => {
             let DistResult { dist_dir, .. } =
