@@ -7,4 +7,4 @@ edition = "2021"
 
 [dependencies]
 xtask-wasm = "0.1"
-yewprint-css = "0.2"
+yewprint-css = "0.4"
