@@ -33,7 +33,7 @@ impl Component for App {
 
     fn view(&self, ctx: &Context<Self>) -> Html {
         html! {
-            <div class={classes!(self.dark_theme.then(|| "bp3-dark"))}>
+            <div class={classes!(self.dark_theme.then_some("bp3-dark"))}>
                 <Button
                     onclick={ctx.link().callback(|_| Msg::ToggleLight)}
                     icon={Icon::Flash}
