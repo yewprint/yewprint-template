@@ -18,6 +18,8 @@ pub fn run_app() -> Result<(), JsValue> {
     #[cfg(feature = "console_error_panic_hook")]
     console_error_panic_hook::set_once();
 
+    yewprint::Dark.auto_detect();
+
     log("Hello World!");
     yew::Renderer::<app::App>::new().render();
 

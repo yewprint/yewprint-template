@@ -1,9 +1,7 @@
 use yew::prelude::*;
-use yewprint::{Button, Icon};
+use yewprint::{Button, Dark, Icon};
 
-pub struct App {
-    dark_theme: bool,
-}
+pub struct App;
 
 pub enum Msg {
     ToggleLight,
@@ -14,18 +12,13 @@ impl Component for App {
     type Properties = ();
 
     fn create(_ctx: &Context<Self>) -> Self {
-        App {
-            dark_theme: web_sys::window()
-                .and_then(|x| x.match_media("(prefers-color-scheme: dark)").ok().flatten())
-                .map(|x| x.matches())
-                .unwrap_or(true),
-        }
+        Self
     }
 
     fn update(&mut self, _ctx: &Context<Self>, msg: Self::Message) -> bool {
         match msg {
             Msg::ToggleLight => {
-                self.dark_theme ^= true;
+                Dark.toggle();
                 true
             }
         }
@@ -33,13 +26,15 @@ impl Component for App {
 
     fn view(&self, ctx: &Context<Self>) -> Html {
         html! {
-            <div class={classes!(self.dark_theme.then(|| "bp3-dark"))}>
-                <Button
-                    onclick={ctx.link().callback(|_| Msg::ToggleLight)}
-                    icon={Icon::Flash}
-                >
-                    {"Toggle light"}
-                </Button>
+            <div class={classes!("root", Dark.classes())}>
+                <div class={classes!("app")}>
+                    <Button
+                        onclick={ctx.link().callback(|_| Msg::ToggleLight)}
+                        icon={Icon::Flash}
+                    >
+                        {"Toggle light"}
+                    </Button>
+                </div>
             </div>
         }
     }
